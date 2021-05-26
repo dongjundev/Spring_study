@@ -1,0 +1,1 @@
+java ee 설치 -> sts 설치 -> buildship gradle 설치
