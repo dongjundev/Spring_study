@@ -1,1 +1,4 @@
 java ee 설치 -> sts 설치 -> buildship gradle 설치
+
+마이베티스는 데이터 접근 객체인 dao를 만드는 것보다 sqlsessiondaosupport나 sqlsessiontemplate을 사용하기를 권장함.
+매퍼를 사용하면 일일이 dao를 만들지 않고 인터페이스만을 이용해서 좀 더 편하게 개발할 수 있다.

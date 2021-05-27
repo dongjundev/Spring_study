@@ -12,12 +12,26 @@ import board.mapper.BoardMapper;
 public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
-	private BoardMapper boardMapper;
+	private BoardMapper boardMapper;	//데이터베이스에 접근하는 dao빈 선언
 	
 	@Override
 	public List<BoardDto> selectBoardList() throws Exception {
 		// TODO Auto-generated method stub
 		return boardMapper.selectBoardList();
+	}
+
+	@Override
+	public void insertBoard(BoardDto board) throws Exception {
+		// TODO Auto-generated method stub
+		boardMapper.insertBoard(board);
+	}
+
+	@Override
+	public BoardDto selectBoardDetail(int boardIdx) throws Exception {
+		// TODO Auto-generated method stub
+		boardMapper.updateHitCount(boardIdx);
+		BoardDto board = boardMapper.selectBoardDetail(boardIdx);
+		return board;
 	}
 	
 }
