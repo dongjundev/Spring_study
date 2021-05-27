@@ -20,13 +20,13 @@ import com.zaxxer.hikari.HikariDataSource;
 public class DatabaseConfiguration {
 	
 	@Autowired
-	private ApplicationContext applicationContext;
+	private ApplicationContext applicationContext;		//bean 객체를 생성하고 관리하는 기능(beanfactory를 상속받음.)
 
     // application.properties에 설정했던 데이터베이스 관련 정보를 사용하도록 지정한다.
 	//@ConfigurationProperties 어노테이션에 prefix가 spring.datasource.hikari로 설정되었기 때문에 
 	//spring.datasource.hikari로 시작하는 설정을 이용해서 히카리CP의 설정파일을 만든다.
     @Bean
-    @ConfigurationProperties(prefix="spring.datasource.hikari")
+    @ConfigurationProperties(prefix="spring.datasource.hikari")		//@ConfigurationProperties : *.properties, *.yml 파일에 있는 property를 자바 클래스에 값을 가져와서 사용 할 수 있게 해주는 어노테이션
     public HikariConfig hikariConfig() {
         return new HikariConfig();
     }
@@ -47,7 +47,8 @@ public class DatabaseConfiguration {
     }
     
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {	//SqlSessionFactory : mybatis와 mysql 서버를 연동시켜줌, sqlsession 생성
+    	//sqlsession : 세션을 한번 생성하면 매핑구문을 실행하거나 커밋 또는 롤백을 하기 위해 세션을 사용할수 있다. 더 이상 필요하지 않은 상태가 되면 세션을 닫는다.
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));	//** : 하위폴더전체
@@ -56,7 +57,7 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {		//SqlSessionTemplate은 SqlSession을 구현하고 코드에서 SqlSession를 대체하는 역할을 한다.
         return new SqlSessionTemplate(sqlSessionFactory);
     }
     
