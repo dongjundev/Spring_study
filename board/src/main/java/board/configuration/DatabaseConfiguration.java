@@ -41,10 +41,17 @@ public class DatabaseConfiguration {
     }
     
     @Bean
+    @ConfigurationProperties(prefix = "mybatis.configuration")  //@ConfigurationProperties을 통해서 application.properties에서 prefix가 mybatis.configuration인 설정을 가져온다.
+    public org.apache.ibatis.session.Configuration mybatisConfig(){
+        return new org.apache.ibatis.session.Configuration();   //가져온 마이바티스 설정을 자바 클래스로 만들어 반환한다.
+    }
+    
+    @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));	//** : 하위폴더전체
+        sqlSessionFactoryBean.setConfiguration(mybatisConfig());	//해당 설정을 sqlSessionFactory에 설정해준다.
         return sqlSessionFactoryBean.getObject();
     }
 
@@ -52,4 +59,5 @@ public class DatabaseConfiguration {
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+    
 }
