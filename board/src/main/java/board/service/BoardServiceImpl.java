@@ -34,4 +34,15 @@ public class BoardServiceImpl implements BoardService{
 		return board;
 	}
 	
+	@Override
+	public void updateBoard(BoardDto board) throws Exception{
+		// TODO Auto-generated method stub
+		boardMapper.updateBoard(board);
+	}
+
+	@Override
+	public void deleteBoard(int boardIdx) throws Exception {
+		// TODO Auto-generated method stub
+		boardMapper.deleteBoard(boardIdx);
+	}
 }

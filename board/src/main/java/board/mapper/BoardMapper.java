@@ -15,6 +15,8 @@ public interface BoardMapper {
 	void updateHitCount(int boardIdx) throws Exception;		//조회수 증가
 	BoardDto selectBoardDetail(int boardIdx) throws Exception;	//게시판 상세보기
 	
+	void updateBoard(BoardDto board) throws Exception;		//업데이트
+	void deleteBoard(int boardIdx) throws Exception;		//삭제
 }
 
 

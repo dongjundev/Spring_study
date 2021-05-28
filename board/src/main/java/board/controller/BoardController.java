@@ -39,12 +39,25 @@ public class BoardController {
     }
     
     @RequestMapping("/board/openBoardDetail.do")
-    public ModelAndView openBoardDetail(@RequestParam int boardIdx) throws Exception{
+    public ModelAndView openBoardDetail(@RequestParam int boardIdx) throws Exception{		//@RequestParam url에 boardIdx 값 받아옴.
+    	//public ModelAndView openBoardDetail(@RequestParam("boardIdx")Integer boardIdx) throws Exception{		//이것도 가능
     	ModelAndView mv = new ModelAndView("/boardDetail");		//templates에서 바로 찾음
     	
     	BoardDto board = boardService.selectBoardDetail(boardIdx);
     	mv.addObject("board", board);
     	
     	return mv;
+    }
+    
+    @RequestMapping("/board/updateBoard.do")
+    public String updateBoard(BoardDto board) throws Exception{
+    	boardService.updateBoard(board);
+    	return "redirect:/board/openBoardList.do";
+    }
+    
+    @RequestMapping("/board/deleteBoard.do")
+    public String deleteBoard(int boardIdx) throws Exception{
+    	boardService.deleteBoard(boardIdx);
+    	return "redirect:/board/openBoardList.do";
     }
 }
