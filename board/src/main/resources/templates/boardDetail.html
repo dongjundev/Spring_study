@@ -16,13 +16,13 @@
 				<th scope="row">글 번호</th>
 				<td th:text="${board.boardIdx}"></td>
 				<th scope="row">조회수</th>
-				<td th:test="${board.hitCnt}"></td>
+				<td th:text="${board.hitCnt}"></td>
 			</tr>
 			<tr>
 				<th scope="row">작성자</th>
 				<td th:text="${board.creatorId}"></td>
 				<th scope="row">작성일</th>
-				<td th:test="${board.createdDatetime}"></td>
+				<td th:text="${board.createdDatetime}"></td>
 			</tr>
 			<tr>
 				<th scope="row">제목</th>
