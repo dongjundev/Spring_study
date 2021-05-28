@@ -75,4 +75,14 @@
 				board_idx = #{boardIdx}
 		]]>
 	</update>
+	
+	<!--
+	<select id="login" resultType="board.dto.UserDto">		
+		<![CDATA[
+			SELECT user_id, user_pw
+			FROM t_user
+			WHERE user_id = #{} AND user_pw = #{}
+		]]>
+	</select>
+	-->
 </mapper>
