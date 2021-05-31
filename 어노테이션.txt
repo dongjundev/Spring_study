@@ -12,3 +12,10 @@ annotation		xml
 클라이언트가 서버에 데이터를 보내는 방법은 get과 post 두가지 방식
 get : url에 표시됨
 post : 표시x, html헤더를 통해 전송
+
+@RequestBody : http 요청 몸체를 자바 객체로 변환 (http 요청 몸체를 자바 객체로 전달받을수 있음)
+@ResponseBody : 자바 객체를 http 응답 몸체로 변환 (자바 객체를 http 응답 몸체로 전송할 수 있음)
+
+@GetMapping = @RequestMapping(value="~", method=RequestMethod.GET)	get요청에만 반응
+@PostMapping = ''
+@RequestMapping : get, post 요청 둘다 반응

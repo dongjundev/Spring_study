@@ -54,9 +54,10 @@
 	</select>
 	
 	<update id="updateBoard" parameterType="board.dto.BoardDto">
+		<!-- #{}로 dto getter 메서드에 접근 -->
 		<![CDATA[
 			UPDATE t_board SET
-				title = #{title},
+				title = #{title},	
 				contents = #{contents},
 				updated_datetime = Now(),
 				updater_id = 'admin'
