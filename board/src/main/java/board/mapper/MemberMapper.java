@@ -6,7 +6,7 @@ import board.dto.MemberDto;
 
 @Mapper
 public interface MemberMapper {
-	public String loginCheck(MemberDto member) throws Exception;
+	String loginCheck(MemberDto member) throws Exception;
 	
 	//------은지
 	void insertMember(MemberDto member) throws Exception;		//회원가입	
