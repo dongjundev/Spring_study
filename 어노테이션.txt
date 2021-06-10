@@ -23,3 +23,5 @@ Post : Create : 리소스를 생성
 GET : Read : 해당 URI의 리소스 조회
 PUT : Update : 해당 URI의 리소스를 수정
 DELETE : Delete : 해당 URI의 리소스를 삭제
+
+MVC
