@@ -1,0 +1,23 @@
+server:
+  port: 7777
+
+#datasource
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/C:/Users/dong/Downloads/H2test;
+    username: sa
+    password:
+
+#mybatis
+#mapper.xml 위치 지정
+#model 프로퍼티 camel case 설정
+#패키지 명을 생략할 수 있도록 alias 설정
+#mapper 로그레벨 설정
+mybatis:
+  mapper-locations: mybatis-mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.example.H2test.model
+logging:
+  level:
+    com.example.H2test.repository: trace
