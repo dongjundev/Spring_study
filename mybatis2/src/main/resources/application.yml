@@ -1,0 +1,20 @@
+server:
+  port: 8888
+
+spring:
+  ora:
+    datasource:
+      jdbc-url: ~
+      driver-class-name: oracle.jdbc.OracleDriver
+      username: ~
+      password: ~
+  pos:
+    datasource:
+      jdbc-url: ~
+      driver-class-name: org.postgresql.Driver
+      username: ~
+      password: ~
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
