@@ -1,7 +1,6 @@
 package com.example.mybatis2.vo;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 public class Metaboxing {

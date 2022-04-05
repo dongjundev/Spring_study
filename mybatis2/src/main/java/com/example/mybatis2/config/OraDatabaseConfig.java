@@ -11,21 +11,22 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackageClasses = com.example.mybatis2.repository.MetaboxingMapper.class, sqlSessionFactoryRef = "firstSqlSessionFactory")
+@MapperScan(value = "com.example.mybatis2.repository.ora", annotationClass = com.example.mybatis2.repository.ora.OraMapper.class, sqlSessionFactoryRef = "firstSqlSessionFactory")
 public class OraDatabaseConfig {
 
-    @Primary
+//    @Primary
     @Bean(name="firstDataSource")
     @ConfigurationProperties(prefix = "spring.ora.datasource")
     public DataSource firstDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "firstSqlSessionFactory")
     public SqlSessionFactory firstSqlSessionFactory(@Qualifier("firstDataSource") DataSource firstDataSource,
                                                     ApplicationContext applicationContext) throws Exception {
@@ -36,9 +37,15 @@ public class OraDatabaseConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "firstSessionTemplate")
     public SqlSessionTemplate firstSqlSessionTemplate(@Qualifier("firstSqlSessionFactory") SqlSessionFactory firstSqlSessionFactory) {
         return new SqlSessionTemplate(firstSqlSessionFactory);
+    }
+
+    //TransactionManager 빈을 등록해줘야만 트랜잭션이 작동한다.
+    @Bean(name = "oraTransactionManager")
+    public DataSourceTransactionManager transactionManager(@Qualifier("firstDataSource") DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 }

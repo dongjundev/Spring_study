@@ -10,22 +10,21 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackageClasses = com.example.mybatis2.repository.ImageMapper.class, sqlSessionFactoryRef = "secondSqlSessionFactory")
+@MapperScan(value = "com.example.mybatis2.repository.pos", sqlSessionFactoryRef = "secondSqlSessionFactory")
 public class PosDatabaseConfig {
 
-    @Primary
+//    @Primary
     @Bean(name="secondDataSource")
     @ConfigurationProperties(prefix = "spring.pos.datasource")
     public DataSource secondDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "secondSqlSessionFactory")
     public SqlSessionFactory secondSqlSessionFactory(@Qualifier("secondDataSource") DataSource secondDataSource,
                                                     ApplicationContext applicationContext) throws Exception {
@@ -36,7 +35,7 @@ public class PosDatabaseConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "secondSessionTemplate")
     public SqlSessionTemplate secondSqlSessionTemplate(@Qualifier("secondSqlSessionFactory") SqlSessionFactory secondSqlSessionFactory) {
         return new SqlSessionTemplate(secondSqlSessionFactory);
