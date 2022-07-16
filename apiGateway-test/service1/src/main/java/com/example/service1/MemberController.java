@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserController {
+public class MemberController {
 
-    @GetMapping("/user")
+    @GetMapping("/member")
     public String userService() {
-        return "USER SERVICE!";
+        return "MEMBER SERVICE!";
     }
 }

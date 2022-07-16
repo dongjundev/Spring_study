@@ -3,9 +3,9 @@ server:
 
 spring:
   application:
-    name: eureka-server
+    name: eureka-server #Application 이름
 
 eureka:
   client:
-    fetch-registry: false
-    register-with-eureka: false
+    fetch-registry: false #eureka server를 registry에 등록할지 여부
+    register-with-eureka: false #registry에 있는 정보들을 가져올지 여부

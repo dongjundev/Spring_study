@@ -15,11 +15,13 @@ spring:
 
       routes:
         - id: user-service
-          uri: lb://user-service
+          uri: lb://member-service
           predicates:
-            - Path=/user/**
+            - Path=/member/**
+          filters:
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/order/**
+          filters:
